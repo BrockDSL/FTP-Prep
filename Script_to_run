@@ -24,9 +24,13 @@ for narrowed in narrowed:
     link.append(narrowed.find('a')['href'])
 
 
-for link in link:
-    print(urlbase + link)
+file_num = 0
 
+for link in link:
+    file_num = file_num + 1
+    url = (urlbase + link)
+    r = requests.get(url, allow_redirects=True)
+    open('file'+ str(file_num), 'wb').write(r.content)
 
 
 
