@@ -4,14 +4,14 @@ from bs4 import BeautifulSoup
 import os
 from urllib.parse import urlparse
 import shutil
-
+import string
 
 
 urlbase = "https://dr.library.brocku.ca"
 
 
 #INSERT THE URL OF THE FULL ITEM RECORD OF AN OBJECT HERE (This will be changed to pulling lines from a csv)
-webpageLink = "http://dr.library.brocku.ca/handle/10464/6070?show=full"
+webpageLink = "http://dr.library.brocku.ca/handle/10464/14483?show=full"
 
 
 
@@ -27,7 +27,9 @@ narrowed_title = "blank"
 for x in soup.find('title'):
     narrowed_title = x.extract()
 
-os.mkdir(narrowed_title)
+stripped_title = narrowed_title.translate(str.maketrans('', '', string.punctuation))
+
+os.mkdir(stripped_title)
 
 
 
@@ -49,7 +51,7 @@ for link in link:
     
     r = requests.get(url, allow_redirects=True)
     open(parsed_name_of_file, 'wb').write(r.content)
-    shutil.move(parsed_name_of_file, narrowed_title)
+    shutil.move(parsed_name_of_file, stripped_title)
 
 
 
