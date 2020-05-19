@@ -54,13 +54,47 @@ def build_ftp_folder(page_url):
         r = requests.get(url, allow_redirects=True)
         open(parsed_name_of_file, 'wb').write(r.content)
         shutil.move(parsed_name_of_file, stripped_title)
+    
+    #This part creates and populates the metatada.yml file
+    metafile = open("metadata.yml","a")
+    
+    metafile.write("title: " + "'" + narrowed_title+"'\n")
+    
+    description_text = soup.find(text="dc.description.abstract").findNext('td').contents[0]
+    metafile.write("description: " + description_text + "\n")
+    
+    metafile.write("physical_description: ''"  + "\n")
+    metafile.write("document_history: ''"  + "\n")
+    metafile.write("permission_description: ''"  + "\n")
+    metafile.write("location_of_composition: ''"  + "\n")
+    
+    author_name = soup.find(text="dc.contributor.author").findNext('td').contents[0]
+    metafile.write("author: " + author_name + "\n")
+  
+    metafile.write("transcription_conventions: ''"  + "\n")
+    metafile.write("scribes_can_edit_titles: true"  + "\n")
+    metafile.write("supports_translation: true"  + "\n")
+    metafile.write("translation_instructions: ''"  + "\n")
+    metafile.write("pages_are_meaningful: true"  + "\n")
+    
+    metafile.write("slug: "  + "\n")
+    
+    metafile.close()
+    
+    shutil.move("metadata.yml", stripped_title)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 build_ftp_folder(webpageLink)
-
-
-
-
 
 
 
