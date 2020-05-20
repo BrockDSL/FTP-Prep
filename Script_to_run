@@ -5,13 +5,15 @@ import os
 from urllib.parse import urlparse
 import shutil
 import string
-
+import csv
 
 urlbase = "https://dr.library.brocku.ca"
 
 
-#INSERT THE URL OF THE FULL ITEM RECORD OF AN OBJECT HERE (This will be changed lines from a csv)
-webpageLink = "http://dr.library.brocku.ca/handle/10464/14483?show=full"
+
+csv_file = open("url_list.csv")
+url_list = csv.reader(csv_file)
+
 
 
 
@@ -60,7 +62,12 @@ def build_ftp_folder(page_url):
     
     metafile.write("title: " + "'" + narrowed_title+"'\n")
     
-    description_text = soup.find(text="dc.description.abstract").findNext('td').contents[0]
+    
+    try:
+        description_text = soup.find(text="dc.description").findNext('td').contents[0]
+    except:
+        description_text = soup.find(text="dc.description.abstract").findNext('td').contents[0]
+
     metafile.write("description: " + description_text + "\n")
     
     metafile.write("physical_description: ''"  + "\n")
@@ -77,25 +84,14 @@ def build_ftp_folder(page_url):
     metafile.write("translation_instructions: ''"  + "\n")
     metafile.write("pages_are_meaningful: true"  + "\n")
     
-    metafile.write("slug: "  + "\n")
+    metafile.write("slug: " + stripped_title.replace(" ", "_") + "\n")
     
     metafile.close()
     
     shutil.move("metadata.yml", stripped_title)
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 
-build_ftp_folder(webpageLink)
-
-
-
+for row in url_list:
+    build_ftp_folder(row[0])
 
