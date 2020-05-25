@@ -48,8 +48,8 @@ def build_ftp_folder(page_url):
         file_num = file_num + 1
         url = (urlbase + link)
 
-        paresed_url = urlparse(link)
-        parsed_name_of_file = os.path.basename(paresed_url.path)
+        parsed_url = urlparse(link)
+        parsed_name_of_file = os.path.basename(parsed_url.path)
 
         r = requests.get(url, allow_redirects=True)
         open(parsed_name_of_file, 'wb').write(r.content)
@@ -61,19 +61,32 @@ def build_ftp_folder(page_url):
     metafile.write("title: " + '"' + narrowed_title +'"\n')
 
 
+
+
     try:
         description_text = re.escape(soup.find(text="dc.description").findNext('td').contents[0])
     except:
         description_text = re.escape(soup.find(text="dc.description.abstract").findNext('td').contents[0])
+    else:
+        description_text = ""
 
+   
+    
     metafile.write("description: '" + description_text + "'\n")
+
 
     metafile.write("physical_description: ''"  + "\n")
     metafile.write("document_history: ''"  + "\n")
     metafile.write("permission_description: ''"  + "\n")
     metafile.write("location_of_composition: ''"  + "\n")
 
-    author_name = re.escape(soup.find(text="dc.contributor.author").findNext('td').contents[0])
+
+
+    try:
+        author_name = re.escape(soup.find(text="dc.contributor.author").findNext('td').contents[0])
+    except:
+        author_name = ""
+    
     metafile.write("author: '" + author_name + "'\n")
 
     metafile.write("transcription_conventions: ''"  + "\n")
