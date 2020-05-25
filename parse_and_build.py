@@ -64,15 +64,16 @@ def build_ftp_folder(page_url):
 
 
     try:
-        description_text = re.escape(soup.find(text="dc.description").findNext('td').contents[0])
+        description_text = (soup.find(text="dc.description").findNext('td').contents[0])
     except:
-        description_text = re.escape(soup.find(text="dc.description.abstract").findNext('td').contents[0])
+        description_text = (soup.find(text="dc.description.abstract").findNext('td').contents[0])
     else:
         description_text = ""
-
-   
     
-    metafile.write("description: '" + description_text + "'\n")
+    
+  
+    
+    metafile.write("description: " + description_text + "\n")
 
 
     metafile.write("physical_description: ''"  + "\n")
@@ -83,7 +84,7 @@ def build_ftp_folder(page_url):
 
 
     try:
-        author_name = re.escape(soup.find(text="dc.contributor.author").findNext('td').contents[0])
+        author_name = (soup.find(text="dc.contributor.author").findNext('td').contents[0])
     except:
         author_name = ""
     
