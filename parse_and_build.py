@@ -58,7 +58,7 @@ def build_ftp_folder(page_url):
     #This part creates and populates the metatada.yml file
     metafile = open("metadata.yml","a")
 
-    metafile.write("title: " + '"' + narrowed_title +'"\n')
+    metafile.write("title: " + "'" + narrowed_title +"'\n")
 
 
 
@@ -88,7 +88,7 @@ def build_ftp_folder(page_url):
     except:
         author_name = ""
     
-    metafile.write("author: '" + author_name + "'\n")
+    metafile.write("author: " + author_name + "\n")
 
     metafile.write("transcription_conventions: ''"  + "\n")
     metafile.write("scribes_can_edit_titles: true"  + "\n")
