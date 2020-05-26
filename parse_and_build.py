@@ -74,7 +74,7 @@ def build_ftp_folder(page_url):
     
     
   
-    description_text = description_text.replace('"', "'").replace('\r','').replace('\n',' ').replace("’","'").replace('£','')
+    description_text = description_text.replace('"', "'").replace('\r','').replace('\n',' ').replace("’","'").replace('£','').replace('½','.5')
     metafile.write("description: " + description_text + "\n")
 
 
