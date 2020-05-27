@@ -105,6 +105,22 @@ def build_ftp_folder(page_url):
 
     shutil.move("metadata.yml", stripped_title)
 
+
+
+def batch_bundle():
+    folders = os.listdir()
+    os.mkdir("bundled_items")
+    
+    placeholder = requests.get("https://raw.githubusercontent.com/BrockDSL/BrockDSL.github.io/master/dsl_logo.png", allow_redirects=True)
+    open("dsl_logo.png", 'wb').write(placeholder.content)
+    shutil.move("dsl_logo.png", "bundled_items")
+    
+    for dir in folders:
+        if os.path.isdir(dir) and dir[0] != "." :
+            shutil.move(dir, "bundled_items")
+
+
+
 def bundle_files():
     for dir in os.listdir():
         if os.path.isdir(dir) and dir[0] != "." :
@@ -117,6 +133,11 @@ if __name__ == "__main__":
     #scrape and clean data
     for row in url_list:
         build_ftp_folder(row[0])
+    
+    
+    #Uncomment this to have all of the files be combined into a single .zip for upload.  Good for if all items will be put into a single collection.
+    #batch_bundle()
+
 
     #process into zips
     bundle_files()
