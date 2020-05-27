@@ -3,8 +3,6 @@
 
 This utility will download [DSpace](https://dspace.org) items and prep them for Upload into [From the Page](http://zebrapedia.psu.edu/static/faq). Creates zip file of digital object and `metadata.yml` file.
 
-## Still to do
-- escape characters from scraped data 
 
 ## Prerequisites
 - Python 3
