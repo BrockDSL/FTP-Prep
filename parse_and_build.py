@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 
 # Set to Taste
 urlbase = "https://dr.library.brocku.ca"
-csv_file = open("url_list.csv")
+csv_file = open("url_list.csv", encoding='utf-8-sig')
 url_list = csv.reader(csv_file)
 
 
