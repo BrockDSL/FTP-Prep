@@ -68,8 +68,13 @@ def build_ftp_folder(page_url):
     try:
         description_text = (soup.find(text="dc.description").findNext('td').contents[0])
     except:
+        description_text = ""
+
+
+
+    try:
         description_text = (soup.find(text="dc.description.abstract").findNext('td').contents[0])
-    else:
+    except:
         description_text = ""
     
     
