@@ -21,13 +21,12 @@ url_list = csv.reader(csv_file)
 
 def build_ftp_folder(page_url):
 
-
     #Checks if user provided URI instead of URL and fixes
     if page_url[0:21]=="http://hdl.handle.net":
         url_start = "https://dr.library.brocku.ca/handle/"
         url_end = page_url[22:]
         page_url = url_start + url_end
-
+    
     #Grabs the page and parses the HTML
     page = requests.get(page_url+"?show=full")
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -149,7 +148,7 @@ if __name__ == "__main__":
     
     
     #Uncomment this to have all of the files be combined into a single .zip for upload.  Good for if all items will be put into a single collection.
-    #batch_bundle()
+    batch_bundle()
 
 
     #process into zips
