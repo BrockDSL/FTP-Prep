@@ -59,13 +59,21 @@ def build_ftp_folder(page_url):
 
         r = requests.get(url, allow_redirects=True)
         open(parsed_name_of_file, 'wb').write(r.content)
+        
+                
+        #Renames image to remove bad characters
+        img_name_cleaned = parsed_name_of_file.replace("%20","_").replace("&","AND")
+        os.rename(str(parsed_name_of_file),str(img_name_cleaned))
+
+        
+        
         shutil.move(parsed_name_of_file, stripped_title)
 
     #This part creates and populates the metatada.yml file
     metafile = open("metadata.yml","a")
     
     
-    narrowed_title = narrowed_title.replace('"', "'").replace('\r','').replace('\n',' ').replace("’","'").replace("‘","'").replace("“","'").replace("”","'").replace('£','').replace('½','.5').replace('[','(').replace(']',')').replace('–',' ').replace('-',' ')
+    narrowed_title = narrowed_title.replace('"', "'").replace('\r','').replace('\n',' ').replace("’","'").replace("‘","'").replace("“","'").replace("”","'").replace('£','').replace('½','.5').replace('[','(').replace(']',')').replace('–',' ').replace('-',' ').replace('%',' ')
     
     metafile.write("title: " + '"' + narrowed_title +'"\n')
 
@@ -86,7 +94,7 @@ def build_ftp_folder(page_url):
     
     
   
-    description_text = description_text.replace('"', "'").replace('\r','').replace('\n',' ').replace("’","'").replace("‘","'").replace("“","'").replace("”","'").replace('£','').replace('½','.5').replace('[','(').replace(']',')').replace('–',' ').replace('-',' ')
+    description_text = description_text.replace('"', "'").replace('\r','').replace('\n',' ').replace("’","'").replace("‘","'").replace("“","'").replace("”","'").replace('£','').replace('½','.5').replace('[','(').replace(']',')').replace('–',' ').replace('-',' ').replace('%',' ')
     metafile.write("description: " + '"' + description_text + '"\n')
 
 
