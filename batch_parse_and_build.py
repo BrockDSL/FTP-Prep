@@ -67,7 +67,7 @@ def build_ftp_folder(page_url):
 
         
         
-        shutil.move(parsed_name_of_file, stripped_title)
+        shutil.move(img_name_cleaned, stripped_title)
 
     #This part creates and populates the metatada.yml file
     metafile = open("metadata.yml","a")
