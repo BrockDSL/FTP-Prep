@@ -11,7 +11,8 @@ This utility will download [DSpace](https://dspace.org) items and prep them for 
 
 ## Usage
 - set `urlbase` to relevant DSpace site
-- add urls to items in the `uls_list.csv` file
-- run script `parse_and_build.py`
+- add urls to items into .csv files and place csv's into the Input folder
+- run script `batch_parse_and_build.py` in the build folder
+- retreive zip files from the Output folder
 
 Project written and maintained by Brock University [Digital Scholarship Lab](https://brocku.ca/library/dsl)
