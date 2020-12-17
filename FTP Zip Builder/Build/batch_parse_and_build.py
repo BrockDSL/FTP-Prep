@@ -75,9 +75,9 @@ def build_ftp_folder(page_url):
     metafile = open("metadata.yml","a")
     
     
-    narrowed_title = narrowed_title.replace('"', "'").replace('\r','').replace('\n',' ').replace("’","'").replace("‘","'").replace("“","'").replace("”","'").replace('£','').replace('½','.5').replace('[','(').replace(']',')').replace('–',' ').replace('-',' ').replace('%',' ').replace("…","").replace("¼","0.25")
-    
-    metafile.write("title: " + '"' + narrowed_title +'"\n')
+    narrowed_title = narrowed_title.replace('"', "'").replace('\r','').replace('\n',' ').replace("’","'").replace("‘","'").replace("“","'").replace("”","'").replace('£','').replace('½','.5').replace('[','(').replace(']',')').replace('–',' ').replace('-',' ').replace('%',' ').replace("…","").replace("¼","0.25").replace("—"," ")
+
+    metafile.write("title: " + '"' + narrowed_title[0:250] +'"\n')
 
 
 
@@ -96,7 +96,7 @@ def build_ftp_folder(page_url):
     
     
   
-    description_text = description_text.replace('"', "'").replace('\r','').replace('\n',' ').replace("’","'").replace("‘","'").replace("“","'").replace("”","'").replace('£','').replace('½','.5').replace('[','(').replace(']',')').replace('–',' ').replace('-',' ').replace('%',' ').replace("…","").replace("¼","0.25")
+    description_text = description_text.replace('"', "'").replace('\r','').replace('\n',' ').replace("’","'").replace("‘","'").replace("“","'").replace("”","'").replace('£','').replace('½','.5').replace('[','(').replace(']',')').replace('–',' ').replace('-',' ').replace('%',' ').replace("…","").replace("¼","0.25").replace("—"," ")
     metafile.write("description: " + '"' + description_text + '"\n')
 
 
@@ -112,8 +112,8 @@ def build_ftp_folder(page_url):
     except:
         author_name = ""
     
-    author_name = author_name.replace('"', "'")
-    metafile.write("author: " + author_name + "\n")
+    author_name = author_name.replace('"', "'").replace('\r','').replace('\n',' ').replace("’","'").replace("‘","'").replace("“","'").replace("”","'").replace('£','').replace('½','.5').replace('[','(').replace(']',')').replace('–',' ').replace('-',' ').replace('%',' ').replace("…","").replace("¼","0.25").replace("—"," ")
+    metafile.write("author: '" + author_name + "'\n")
 
     metafile.write("transcription_conventions: ''"  + "\n")
     metafile.write("scribes_can_edit_titles: true"  + "\n")
