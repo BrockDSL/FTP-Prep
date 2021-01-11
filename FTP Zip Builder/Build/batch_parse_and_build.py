@@ -64,7 +64,7 @@ def build_ftp_folder(page_url):
         
                 
         #Renames image to remove bad characters
-        img_name_cleaned = parsed_name_of_file.replace("%20","_").replace("&","AND")
+        img_name_cleaned = parsed_name_of_file.replace("%20","_").replace("&","AND").replace("%2c","").replace("%e2","").replace("%80","").replace("%99","").replace("%27","").replace("%","")
         os.rename(str(parsed_name_of_file),str(img_name_cleaned))
 
         
