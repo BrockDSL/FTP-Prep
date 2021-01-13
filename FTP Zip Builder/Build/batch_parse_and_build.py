@@ -145,6 +145,8 @@ if __name__ == "__main__":
 
     for file in input_files:
         
+        print("Currently building "+file)
+        
         #Pull file into build folder and rename to url_list
         shutil.move("../Input/"+file, "../Build")
         os.rename(file, "url_list.csv")
