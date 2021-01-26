@@ -100,10 +100,10 @@ def build_ftp_folder(page_url):
     metafile.write("description: " + '"' + description_text + '"\n')
 
 
-    metafile.write("physical_description: ''"  + "\n")
-    metafile.write("document_history: ''"  + "\n")
-    metafile.write("permission_description: ''"  + "\n")
-    metafile.write("location_of_composition: ''"  + "\n")
+    metafile.write('physical_description: ""'  + "\n")
+    metafile.write('document_history: ""'  + "\n")
+    metafile.write('permission_description: ""'  + "\n")
+    metafile.write('location_of_composition: ""'  + "\n")
 
 
 
@@ -113,15 +113,15 @@ def build_ftp_folder(page_url):
         author_name = ""
     
     author_name = author_name.replace('"', "'").replace('\r','').replace('\n',' ').replace("’","'").replace("‘","'").replace("“","'").replace("”","'").replace('£','').replace('½','.5').replace('[','(').replace(']',')').replace('–',' ').replace('-',' ').replace('%',' ').replace("…","").replace("¼","0.25").replace("—"," ")
-    metafile.write("author: '" + author_name + "'\n")
+    metafile.write('author: "' + author_name + '"\n')
 
-    metafile.write("transcription_conventions: ''"  + "\n")
-    metafile.write("scribes_can_edit_titles: true"  + "\n")
-    metafile.write("supports_translation: true"  + "\n")
-    metafile.write("translation_instructions: ''"  + "\n")
-    metafile.write("pages_are_meaningful: true"  + "\n")
+    metafile.write('transcription_conventions: ""'  + '\n')
+    metafile.write('scribes_can_edit_titles: true'  + '\n')
+    metafile.write('supports_translation: true'  + '\n')
+    metafile.write('translation_instructions: ""'  + '\n')
+    metafile.write('pages_are_meaningful: true'  + '\n')
 
-    metafile.write("slug: '" + stripped_title.replace(" ", "_") + "'\n")
+    metafile.write('slug: "' + stripped_title.replace(" ", "_") + '"\n')
 
     metafile.close()
 
